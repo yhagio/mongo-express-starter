@@ -1,0 +1,22 @@
+version: '3'
+services:
+  mongo:
+    image: 'mongo:4.0.3'
+    ports:
+      - '27017:27017'
+  api:
+    build:
+      dockerfile: Dockerfile.dev # Use dev dockerfile in server folder
+      context: ./
+    volumes:
+      - /app/node_modules # Copy node_modules folder as is
+      - ./:/app # Copy rest of /server folder to /app
+    links:
+      - mongo
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+      - JWT_SECRET=awesomeJWT123
+      - JWT_EXPIRE_IN=30d
+      - MONGO_URL=mongodb://mongo:27017/mongo-express-starter

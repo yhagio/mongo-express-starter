@@ -1,0 +1,80 @@
+{
+  "name": "mongo-express-starter",
+  "version": "0.1.0",
+  "description": "Node.js Express Mongo Starter",
+  "main": "index.js",
+  "scripts": {
+    "build": "docker-compose build",
+    "up-build": "docker-compose up --build",
+    "up": "docker-compose up",
+    "rmi": "docker rmi $(docker images -a -q)",
+    "rmc": "docker rm $(docker ps -a -q)",
+    "stc": "docker stop $(docker ps -a -q)",
+    "down": "docker-compose down",
+    "test:d": "docker-compose -f docker-compose.test.yml up",
+    "start": "node src/index.js",
+    "dev": "export MONGO_URL=mongodb://mongo:27017/mongo-express-starter && nodemon src/index.js",
+    "dev:local": "export MONGO_URL=mongodb://localhost:27017/mongo-express-starter && nodemon src/index.js",
+    "lint": "eslint 'src/**/*.js'",
+    "fixlint": "eslint 'src/**/*.js' --fix",
+    "test": "export MONGO_URL=mongodb://mongo:27017/mongo-express-starter-test && mocha -R spec src/**/*.spec.js",
+    "test:local": "export MONGO_URL=mongodb://localhost:27017/mongo-express-starter-test && mocha -R spec src/**/*.spec.js"
+  },
+  "author": "Yuichi Hagio",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "3.0.2",
+    "body-parser": "1.18.3",
+    "compression": "1.7.3",
+    "cors": "2.8.4",
+    "express": "4.16.3",
+    "express-jwt": "5.3.1",
+    "helmet": "3.13.0",
+    "jsonwebtoken": "8.3.0",
+    "lodash.merge": "4.6.1",
+    "mongoose": "5.3.1",
+    "morgan": "1.9.1"
+  },
+  "devDependencies": {
+    "chai": "4.2.0",
+    "eslint": "5.6.1",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.14.0",
+    "mocha": "5.2.0",
+    "nodemon": "1.18.4",
+    "prettier": "1.14.3",
+    "sinon": "6.3.5"
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "es6": true,
+      "browser": true,
+      "mocha": true
+    },
+    "rules": {
+      "comma-dangle": [
+        "warn",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-plusplus": 0,
+      "no-await-in-loop": 0,
+      "arrow-parens": 0,
+      "implicit-arrow-linebreak": 0,
+      "function-paren-newline": 0,
+      "operator-linebreak": 0,
+      "no-underscore-dangle": 0
+    }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "none",
+    "bracketSpacing": true,
+    "arrowParens": "avoid",
+    "tabWidth": 2,
+    "semi": true
+  }
+}
